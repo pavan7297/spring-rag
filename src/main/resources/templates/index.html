@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Workspace')}"></head>
+<body class="bg-slate-50">
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main class="mx-auto max-w-6xl px-5 py-12">
+    <section class="rounded-3xl bg-slate-900 px-8 py-12 text-white"><p
+            class="mb-3 text-sm font-semibold uppercase tracking-widest text-cyan-300">Local-first knowledge
+        assistant</p>
+        <h1 class="max-w-2xl text-4xl font-bold tracking-tight">Ask reliable questions of your documents.</h1>
+        <p class="mt-4 max-w-xl text-slate-300">Upload files, build a private vector index, and chat with answers
+            grounded in your content.</p>
+        <div class="mt-7 flex gap-3"><a href="/upload"
+                                        class="rounded-lg bg-cyan-400 px-4 py-2 font-semibold text-slate-950">Upload a
+            document</a><a href="/chat" class="rounded-lg border border-slate-600 px-4 py-2 font-semibold">Open chat</a>
+        </div>
+    </section>
+    <section class="mt-10 grid gap-5 md:grid-cols-2">
+        <div class="rounded-2xl border bg-white p-6"><h2 class="font-semibold">Indexed documents</h2>
+            <p class="mt-1 text-3xl font-bold" th:text="${#lists.size(documents)}">0</p><a href="/documents"
+                                                                                           class="mt-4 inline-block text-sm font-medium text-cyan-700">Manage
+                documents →</a></div>
+        <div class="rounded-2xl border bg-white p-6"><h2 class="font-semibold">Chat sessions</h2>
+            <p class="mt-1 text-3xl font-bold" th:text="${#lists.size(sessions)}">0</p><a href="/chat"
+                                                                                          class="mt-4 inline-block text-sm font-medium text-cyan-700">Continue
+                a conversation →</a></div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,24 @@
+html {
+    color: #0f172a;
+}
+
+body {
+    min-height: 100vh;
+}
+
+a {
+    transition: color .15s ease;
+}
+
+a:hover {
+    color: #0891b2;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+#messages {
+    overflow-y: auto;
+}

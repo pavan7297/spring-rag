@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Documents')}"></head>
+<body class="bg-slate-50">
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<main class="mx-auto max-w-6xl px-5 py-12">
+    <div class="flex items-center justify-between">
+        <div><h1 class="text-3xl font-bold">Documents</h1>
+            <p class="mt-2 text-slate-600">Only ready documents participate in retrieval.</p></div>
+        <a href="/upload" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white">Upload</a></div>
+    <div class="mt-8 overflow-hidden rounded-2xl border bg-white">
+        <div th:if="${#lists.isEmpty(documents)}" class="p-10 text-center text-slate-500">No documents yet.</div>
+        <table th:unless="${#lists.isEmpty(documents)}" class="w-full text-left text-sm">
+            <thead class="bg-slate-100 text-slate-600">
+            <tr>
+                <th class="p-4">File</th>
+                <th class="p-4">Status</th>
+                <th class="p-4">Chunks</th>
+                <th class="p-4"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="doc : ${documents}" class="border-t">
+                <td class="p-4"><p class="font-medium" th:text="${doc.filename}">file.pdf</p>
+                    <p class="text-xs text-slate-500" th:text="${doc.size} + ' bytes'">0</p>
+                    <p th:if="${doc.error}" class="mt-1 text-xs text-red-600" th:text="${doc.error}"></p></td>
+                <td class="p-4"><span class="rounded-full px-2 py-1 text-xs font-semibold"
+                                      th:classappend="${doc.status == 'READY'} ? ' bg-emerald-100 text-emerald-700' : ' bg-amber-100 text-amber-700'"
+                                      th:text="${doc.status}">READY</span></td>
+                <td class="p-4" th:text="${doc.chunks}">0</td>
+                <td class="p-4 text-right">
+                    <button class="delete-document text-red-600" th:data-id="${doc.id}">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<script th:src="@{/js/app.js}"></script>
+</body>
+</html>

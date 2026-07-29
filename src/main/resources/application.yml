@@ -1,0 +1,24 @@
+spring:
+  application.name: springboot-rag
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/ragdb}
+    username: ${DATABASE_USER:rag}
+    password: ${DATABASE_PASSWORD:rag}
+  jpa:
+    hibernate.ddl-auto: validate
+    open-in-view: false
+  servlet.multipart:
+    max-file-size: 25MB
+    max-request-size: 25MB
+  ai.ollama:
+    base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+    chat.options.model: ${OLLAMA_CHAT_MODEL:llama3.2}
+    embedding.options.model: ${OLLAMA_EMBEDDING_MODEL:nomic-embed-text}
+  flyway.enabled: true
+server.error.whitelabel.enabled: false
+rag:
+  uploads-dir: ${RAG_UPLOADS_DIR:./data/uploads}
+  chunk-size: 1000
+  chunk-overlap: 150
+  retrieval-limit: 5
+management.endpoints.web.exposure.include: health,info
